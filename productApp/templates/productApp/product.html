@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+  .shop-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .categories {
+    width: 200px;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .categories h3 {
+    margin-bottom: 10px;
+  }
+
+  .categories ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .categories li {
+    margin-bottom: 8px;
+  }
+
+  .categories a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .categories a:hover {
+    color: #007bff;
+  }
+
+  .products {
+    display: flex;
+    flex-direction: row;  
+    flex-wrap: wrap;       
+    gap: 20px;
+  }
+
+  .card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .card h3 {
+    margin: 10px 0 5px;
+  }
+
+  .price {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background: #0056b3;
+  }
+  .product-title {
+  text-decoration: none;   /* remove underline */
+  color: #333;             /* dark text */
+  font-weight: 600;
+  }
+
+ .product-title:hover {
+  color: #007bff;          /* blue on hover */
+  text-decoration: none;   /* keep underline off */
+  }
+  .card h3 {
+  margin: 10px 0 5px;
+  font-size: 16px;
+}
+
+
+</style>
+
+<div class="shop-container">
+
+  <!-- Categories -->
+  <div class="categories">
+    <h3>Categories</h3>
+    <ul>
+      <li><a href="{% url 'product_list' %}">All</a></li>
+      {% for cat in categories %}
+        <li>
+          <a href="{% url 'category_products' cat.id %}">
+            {{ cat.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Products -->
+  <div>
+    <h2>Products</h2>
+
+    <div class="products">
+        {% for product in products %}
+          <div class="card">
+            <!-- <a href="{% url 'product_detail' product.id %}">
+              <img src="{{ product.image.url }}" alt="{{ product.name }}">
+              <h3>{{ product.name }}</h3>
+            </a> -->
+            <a href="{% url 'product_detail' product.id %}">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+              </a>
+              
+              <h3>
+                <a href="{% url 'product_detail' product.id %}" class="product-title">
+                  {{ product.name }}
+                </a>
+              </h3>
+              
+              <p class="price">₹{{ product.price }}</p>
+              
+              <a href="{% url 'add_to_cart' product.id %}" class="btn">
+                Add to Cart
+              </a>
+              
+            
+          </div>
+        {% endfor %}
+      </div>
+      
+
+{% endblock %}

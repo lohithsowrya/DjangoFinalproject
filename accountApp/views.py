@@ -28,7 +28,7 @@ def register_view(request):
         messages.success(request, "Registration successful. Please login.")
         return redirect("login")
 
-    return render(request, "accountApp/templates/register.html")
+    return render(request, "accountApp/register.html")
 
 def login_view(request):
     if request.method == "POST":
@@ -44,7 +44,7 @@ def login_view(request):
             messages.error(request, "Invalid credentials")
             return redirect("login")
 
-    return render(request, "accountApp/templates/login.html")
+    return render(request, "accountApp/login.html")
 
 def logout_view(request):
     logout(request)
@@ -57,4 +57,4 @@ def logout_view(request):
 
 @login_required(login_url="login")
 def profile_view(request):
-    return render(request, "accountApp/templates/profile.html")
+    return render(request, "accountApp/profile.html")

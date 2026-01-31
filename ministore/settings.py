@@ -28,6 +28,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['djangofinalproject.onrender.com']
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [

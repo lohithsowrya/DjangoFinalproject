@@ -1,26 +1,105 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Register</h2>
+<style>
+  .register-container {
+    max-width: 450px;
+    margin: 80px auto;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
 
-<form method="POST">
-    {% csrf_token %}
-    
-    <label>Username</label><br>
-    <input type="text" name="username" required><br><br>
+  .register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
 
-    <label>Email</label><br>
-    <input type="email" name="email" required><br><br>
+  .register-container label {
+    font-weight: 500;
+    color: #555;
+  }
 
-    <label>Password</label><br>
-    <input type="password" name="password" required><br><br>
+  .register-container input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+  }
 
-    <label>Confirm Password</label><br>
-    <input type="password" name="confirm_password" required><br><br>
+  .register-container input:focus {
+    border-color: #28a745;
+  }
 
-    <button type="submit">Register</button>
-</form>
+  .register-container button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: #28a745;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
 
-<p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  .register-container button:hover {
+    background: #218838;
+  }
+
+  .register-container p {
+    text-align: center;
+    margin-top: 15px;
+    color: #555;
+  }
+
+  .register-container a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .register-container a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="register-container">
+  <h2>Create Account</h2>
+
+  <form method="POST">
+      {% csrf_token %}
+      
+      <label>Username</label>
+      <input type="text" name="username" required>
+
+      <br><br>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <br><br>
+
+      <label>Password</label>
+      <input type="password" name="password" required>
+
+      <br><br>
+
+      <label>Confirm Password</label>
+      <input type="password" name="confirm_password" required>
+
+      <button type="submit">Register</button>
+  </form>
+
+  <p>
+    Already have an account?
+    <a href="{% url 'login' %}">Login</a>
+  </p>
+</div>
 
 {% endblock %}
